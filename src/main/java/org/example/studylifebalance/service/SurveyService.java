@@ -1,6 +1,7 @@
 package main.java.org.example.studylifebalance.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.data.util.Pair;
 
 @Service
 public class SurveyService {
@@ -51,45 +52,70 @@ public class SurveyService {
         return Math.round((double) restTime / totalTime * 100);
     }
 
-    //알파벳 조합
-    public String getCategory(String major, double majorRatio, double studyTimeRatio, double outsideRatio) {
-        String result = "";
+    //카테고리 계산
+    public Pair<String, String> getCategory(String major, double majorRatio, double studyTimeRatio, double outsideRatio) {
+        String resultCode = "";
 
         // 계열
         switch (major) {
             case "인문 사회":
-                result += "H";
+                resultCode += "H";
                 break;
             case "자연":
-                result += "N";
+                resultCode += "N";
                 break;
             case "공학":
-                result += "E";
+                resultCode += "E";
                 break;
             case "예술":
-                result += "A";
+                resultCode += "A";
                 break;
             case "체육":
-                result += "P";
+                resultCode += "P";
                 break;
         }
 
         // 전공 / 교양
         if (majorRatio >= 50) {
-            result += "M";
+            resultCode += "M";
         } else {
-            result += "G";
+            resultCode += "G";
         }
 
         // 공부 / 휴식
         if (studyTimeRatio >= 50) {
-            result += "S";
+            resultCode += "S";
         } else {
-            result += "R";
+            resultCode += "R";
         }
 
         // 야외 / 실내
+        if (outsideRatio >= 50) {
+            resultCode += "O";
+        } else {
+            resultCode += "I";
+        }
 
-        return result;
+        String resultName = "";
+
+        switch (resultCode) {
+            case "HGRO":
+                resultName = "궁궐 탈출 세종대왕";
+                break;
+            case "NMSI":
+                resultName = "침대 역학 아인슈타인";
+                break;
+            case "EMSI":
+                resultName = "오늘도 또 유레카 에디슨";
+                break;
+            case "AMRO":
+                resultName = "별 보러 산 간 고흐";
+                break;
+            case "PGRO":
+                resultName = "스피닝 타는 엄복동";
+                break;
+        }
+
+        return Pair.of(resultCode, resultName);
     }
 }
