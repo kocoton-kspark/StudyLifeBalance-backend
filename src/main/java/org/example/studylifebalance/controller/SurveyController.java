@@ -10,6 +10,7 @@ import org.example.studylifebalance.dto.response.RecommendResponse;
 import org.example.studylifebalance.dto.response.SurveyResponse;
 import org.example.studylifebalance.dto.response.PercentageResponse;
 import org.example.studylifebalance.service.SurveyService;
+import org.example.studylifebalance.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class SurveyController {
 
     @Autowired
     private SurveyService surveyService;
+
+    @Autowired
+    private RecommendService recommendService;
 
 
     @PostMapping("/surveys/result")
@@ -56,14 +60,20 @@ public class SurveyController {
     }
 
 
-//    @PostMapping("/surveys/recommend")
-//    public ResponseEntity<RecommendResponse> getRecommendation(@RequestBody RecommendRequest request) {
-//        try {
-//            RecommendResponse recommendation = surveyService.getRecommendation(request);
-//            return ResponseEntity.ok(recommendation);
-//        } catch (Exception e) {
-//            return ResponseEntity.internalServerError().build();
-//        }
-//    }
+
+    @PostMapping("/surveys/recommend-tips")
+    public ResponseEntity<RecommendResponse[]> getRecommendTips(@RequestBody RecommendRequest request) {
+        try {
+            String studyTip = recommendService.getStudyTip(request);
+            String restTip = recommendService.getRestTip(request);
+            RecommendResponse[] responses = new RecommendResponse[] {
+                new RecommendResponse(studyTip),
+                new RecommendResponse(restTip)
+            };
+            return ResponseEntity.ok(responses);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
 }
