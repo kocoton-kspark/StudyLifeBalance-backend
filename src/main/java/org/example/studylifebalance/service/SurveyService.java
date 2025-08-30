@@ -2,9 +2,15 @@ package main.java.org.example.studylifebalance.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.data.util.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.example.studylifebalance.repository.CategoryRepository;
+import org.example.studylifebalance.model.Category;
 
 @Service
 public class SurveyService {
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     // 전체 category 비율
     public int getCategoryPercentage(int categoryId) {
         int categoryCount = userRepository.countByCategoryId(categoryId);
@@ -114,6 +120,12 @@ public class SurveyService {
             case "PGRO":
                 resultName = "스피닝 타는 엄복동";
                 break;
+        }
+
+        // 카테고리 count 증가
+        Category category = categoryRepository.findByCategoryID(resultCode);
+        if (category != null) {
+            categoryRepository.incrementCountByCategoryID(resultCode);
         }
 
         return Pair.of(resultCode, resultName);

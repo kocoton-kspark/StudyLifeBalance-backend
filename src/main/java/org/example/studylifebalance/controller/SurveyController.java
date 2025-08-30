@@ -31,23 +31,23 @@ public class SurveyController {
     public ResponseEntity<SurveyResponse> getSurveyResult(@RequestBody SurveyRequest request) {
         try {
             int majorRatio = (int) surveyService.getMajorCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
+            int generalRatio = (int) surveyService.getGeneralCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
             int studyRatio = (int) surveyService.getStudyTimeRatio(request.getStudy_time(), request.getRest_time());
-            int outSideRatio = request.getExternal_activities_time() != null ? request.getExternal_activities_time() : 0;
+            int restRatio = (int) surveyService.getRestTimeRatio(request.getStudy_time(), request.getRest_time());
 
-            // 카테고리 코드와 이름
-            Pair<String, String> categoryPair = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
-            String code = categoryPair.getFirst();
-            String category = categoryPair.getSecond();
-            String description = "description"; // 필요시 실제 설명으로 변경
+            
+            int outSideRatio = 0; // 필요시 request에서 받아서 처리
+            String category = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
 
-            // 전체/학교별 백분율 계산 (categoryId가 없으므로 code 사용)
-            int totalPercentage = surveyService.getCategoryPercentage(code);
-            int collegePercentage = surveyService.getCategoryPercentageInCollege(code, request.getCollege());
+            // 전체/학교별 백분율 계산
+            int totalPercentage = surveyService.getCategoryPercentage(request.getCategoryId());
+            int collegePercentage = surveyService.getCategoryPercentageInCollege(request.getCategoryId(), request.getCollege());
 
-            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio);
-            // 만약 SurveyResponse에 totalPercentage, collegePercentage 필드가 있다면 아래처럼 추가
-            // response.setTotalPercentage(totalPercentage);
-            // response.setCollegePercentage(collegePercentage);
+            SurveyResponse response = new SurveyResponse(category, majorRatio, generalRatio, studyRatio, restRatio, totalPercentage, collegePercentage);
+
+            int outSideRatio = 0;
+            Pair<String, String> category = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
+            SurveyResponse response = new SurveyResponse(category.getFirst(), category.getSecond(), "description" ,majorRatio, studyRatio, outSideRatio);
 
             return ResponseEntity.ok(response);
         } catch (Exception e) {
