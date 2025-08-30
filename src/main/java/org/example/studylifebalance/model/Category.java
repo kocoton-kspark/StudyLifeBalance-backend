@@ -7,9 +7,10 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 public class Category {
+    // DB에 맞춰 명시
     @Id
     @Column(name = "category_id")
-    // DB에 맞춰 명시
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String categoryId;
     private String code;
     private Integer count;

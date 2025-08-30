@@ -16,17 +16,18 @@ public class SurveyService {
     CategoryRepository categoryRepository;
 
     // 전체 category 비율
-    public int getCategoryPercentage(String categoryCode) {
-        int categoryCount = userRepository.countByCategoryId(categoryCode);
-        long totalCount = userRepository.count();
-        if (totalCount == 0) return 0;
-        return Math.round((float) categoryCount / totalCount * 100);
-    }
+
+//    public int getCategoryPercentage(String categoryCode) {
+//        int categoryCount = userRepository.countByCategory_CategoryId(categoryCode);
+//        long totalCount = userRepository.count();
+//        if (totalCount == 0) return 0;
+//        return Math.round((float) categoryCount / totalCount * 100);
+//    }
 
     // 학교 내 category 비율
-    public int getCategoryPercentageInCollege(String categoryCode, String college) {
-        int categoryCount = userRepository.countByCategoryIdAndCollege(categoryCode, college);
-        int totalCount = userRepository.countByCollege(college);
+    public int getCategoryPercentageInCollege(String categoryCode, String mbti) {
+        int categoryCount = userRepository.countByCategory_CategoryIdAndCollege(categoryCode, mbti);
+        int totalCount = userRepository.countByCollege(mbti);
         if (totalCount == 0) return 0;
         return Math.round((float) categoryCount / totalCount * 100);
     }
@@ -60,6 +61,18 @@ public class SurveyService {
         if (totalTime == 0) return 0.0;
         return Math.round((double) restTime / totalTime * 100);
     }
+
+    public int getOutsideRatio(boolean outsideTime, String mbti) {
+        MBTI mbtiEnum = MBTI.valueOf(mbti.toUpperCase());
+
+        // 점수 가져오기
+        double mbtiScore = mbtiEnum.getScore();
+        int outsideTimeScore = outsideTime ? 1 : 0;
+        double score = (mbtiScore + outsideTimeScore) / 3;
+        int roundedScore = (int) Math.round(score * 100);
+        return roundedScore;
+    }
+
 
     //카테고리 계산
     public Pair<String, String> getCategory(String major, double majorRatio, double studyTimeRatio, double outsideRatio) {
