@@ -39,4 +39,8 @@ public class SurveyRequest {
     private Integer general_credit;
 
     private Integer external_activities_time;
+
+    private String mbti;
+
+    private Boolean outside_time;
 }

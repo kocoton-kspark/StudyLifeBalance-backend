@@ -30,7 +30,7 @@ public class SurveyResponse {
 //    private Integer rest_ratio;
 
     @NotNull
-    private Integer outdoor_activity_ratio;
+    private Double outdoor_activity_ratio;
 
     private Integer sleepShortage;
 

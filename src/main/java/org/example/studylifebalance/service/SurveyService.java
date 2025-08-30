@@ -1,5 +1,6 @@
 package org.example.studylifebalance.service;
 
+import org.example.studylifebalance.MBTI;
 import org.example.studylifebalance.repository.CategoryRepository;
 import org.example.studylifebalance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,17 @@ public class SurveyService {
         int totalTime = studyTime + restTime;
         if (totalTime == 0) return 0.0;
         return Math.round((double) restTime / totalTime * 100);
+    }
+
+    public double getOutsideRatio(boolean outsideTime, String mbti) {
+        MBTI mbtiEnum = MBTI.valueOf(mbti.toUpperCase());
+
+        // 점수 가져오기
+        double mbtiScore = mbtiEnum.getScore();
+        int outsideTimeScore = outsideTime ? 1 : 0;
+        double score = (mbtiScore + outsideTimeScore) / 3;
+        double roundedScore = Math.round(score * 100.0) / 100.0;
+        return roundedScore;
     }
 
     //카테고리 계산

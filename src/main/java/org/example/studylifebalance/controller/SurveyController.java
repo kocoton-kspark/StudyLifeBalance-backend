@@ -35,7 +35,7 @@ public class SurveyController {
         try {
             int majorRatio = (int) surveyService.getMajorCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
             int studyRatio = (int) surveyService.getStudyTimeRatio(request.getStudy_time(), request.getRest_time());
-            int outSideRatio = request.getExternal_activities_time() != null ? request.getExternal_activities_time() : 0;
+            double outSideRatio = surveyService.getOutsideRatio(request.getOutside_time(), request.getMbti());
 
             // 카테고리 코드와 이름
             Pair<String, String> categoryPair = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
