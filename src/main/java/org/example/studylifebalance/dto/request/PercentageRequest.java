@@ -1,5 +1,6 @@
-package main.java.org.example.studylifebalance.dto.request;
+package org.example.studylifebalance.dto.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PercentageRequest {
-    public int categoryId;
+    @NotNull
+    private Integer userID;
+
+    public String category_code;
     public String mbti;
 }
