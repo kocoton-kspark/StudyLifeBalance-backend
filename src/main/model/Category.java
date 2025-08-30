@@ -1,6 +1,8 @@
 package main.model;
 
+@Entity
 public class Category {
+    @Id
     private String categoryID;
     private String name;
     private Integer count;

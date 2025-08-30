@@ -1,6 +1,8 @@
 package main.model;
 
+@Entity
 public class Ment {
+    @Id
     private Integer mentId;
     private String content;
 
