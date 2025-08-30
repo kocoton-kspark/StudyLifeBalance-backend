@@ -27,6 +27,9 @@ public class SurveyRequest {
     private Integer study_time;
 
     @NotNull
+    private Integer rest_time;
+
+    @NotNull
     private Integer sleep_time;
 
     @NotNull

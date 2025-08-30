@@ -1,8 +1,24 @@
 package main.java.org.example.studylifebalance.dto.request;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RatioRequest {
-    public int majorCredit;
-    public int generalCredit;
-    public int studyTime;
-    public int restTime;
+
+    @NotNull
+    public Integer majorCredit;
+
+    @NotNull
+    public Integer generalCredit;
+
+    @NotNull
+    public Integer studyTime;
+
+    @NotNull
+    public Integer restTime;
 }
