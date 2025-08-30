@@ -22,13 +22,14 @@ public class SurveyController {
     private SurveyService surveyService;
 
     @PostMapping("/surveys")
-    public ResponseEntity<SurveyResponse> getSurveyResult(@RequestBody RatioRequest request) {
+    public ResponseEntity<SurveyResponse> getSurveyResult(@RequestBody SurveyRequest request) {
         try {
-            int majorRatio = (int) surveyService.getMajorCreditRatio(request.majorCredit, request.generalCredit);
-            int generalRatio = (int) surveyService.getGeneralCreditRatio(request.majorCredit, request.generalCredit);
-            int studyRatio = (int) surveyService.getStudyTimeRatio(request.studyTime, request.restTime);
-            int restRatio = (int) surveyService.getRestTimeRatio(request.studyTime, request.restTime);
-            SurveyResponse response = new SurveyResponse(majorRatio, generalRatio, studyRatio, restRatio);
+            int majorRatio = (int) surveyService.getMajorCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
+            int generalRatio = (int) surveyService.getGeneralCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
+            int studyRatio = (int) surveyService.getStudyTimeRatio(request.getStudy_time(), request.getRest_time());
+            int restRatio = (int) surveyService.getRestTimeRatio(request.getStudy_time(), request.getRest_time());
+            String category = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
+            SurveyResponse response = new SurveyResponse(category, majorRatio, generalRatio, studyRatio, restRatio);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
