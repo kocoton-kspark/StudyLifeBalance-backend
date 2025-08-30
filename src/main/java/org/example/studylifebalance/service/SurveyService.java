@@ -1,7 +1,25 @@
-<<<<<<< HEAD
 package main.java.org.example.studylifebalance.service;
 
 public class SurveyService {
+    @Autowired
+    private UserRepository userRepository;
+
+    // 전체 category 비율
+    public int getCategoryPercentage(int categoryId) {
+        int categoryCount = userRepository.countByCategoryId(categoryId);
+        int totalCount = userRepository.count();
+        if (totalCount == 0) return 0;
+        return Math.round((float) categoryCount / totalCount * 100);
+    }
+
+    // 학교 내 category 비율
+    public int getCategoryPercentageInCollege(int categoryId, String college) {
+        int categoryCount = userRepository.countByCategoryIdAndCollege(categoryId, college);
+        int totalCount = userRepository.countByCollege(college);
+        if (totalCount == 0) return 0;
+        return Math.round((float) categoryCount / totalCount * 100);
+    }
+
     //전공학점 비율 계산
     public double getMajorCreditRatio(int majorCredit, int generalCredit) {
     int totalCredit = majorCredit + generalCredit;
@@ -29,13 +47,4 @@ public class SurveyService {
     if (totalTime == 0) return 0.0;
     return Math.round((double) restTime / totalTime * 100);
     }
-=======
-package org.example.studylifebalance.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class SurveyService {
-
->>>>>>> 909cb5a200acd080553280d4726525005f637a39
 }

@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class QuoteResponse {
+public class MentResponse {
 
     @NotBlank
-    private String quote;
+    private String ment;
 }

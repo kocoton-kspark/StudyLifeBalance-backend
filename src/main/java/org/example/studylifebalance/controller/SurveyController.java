@@ -1,5 +1,6 @@
 package org.example.studylifebalance.controller;
 
+import org.example.studylifebalance.dto.request.SurveyRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,31 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import main.java.org.example.studylifebalance.service.SurveyService;
+
 @RestController
 @RequestMapping("/api/v0")
 public class SurveyController {
-    // 비율 계산 응답 DTO
-    public static class RatioResponse {
-        public int majorCreditRatio;
-        public int generalCreditRatio;
-        public int studyTimeRatio;
-        public int restTimeRatio;
-
-        public RatioResponse(int majorCreditRatio, int generalCreditRatio, int studyTimeRatio, int restTimeRatio) {
-            this.majorCreditRatio = majorCreditRatio;
-            this.generalCreditRatio = generalCreditRatio;
-            this.studyTimeRatio = studyTimeRatio;
-            this.restTimeRatio = restTimeRatio;
-        }
-    }
-
-    // 비율 계산 요청 DTO
-    public static class RatioRequest {
-        public int majorCredit;
-        public int generalCredit;
-        public int studyTime;
-        public int restTime;
-    }
 
     @PostMapping("/surveys/ratios")
     public ResponseEntity<RatioResponse> getRatios(@RequestBody RatioRequest request) {
@@ -53,6 +34,11 @@ public class SurveyController {
     // 설문조사 결과
     @PostMapping("/surveys")
     public ResponseEntity<SurveyResultResponse> submitSurvey(@RequestBody SurveyRequest request) {
+        // userID가 없으면 6자리 랜덤값 자동 배정
+        if (request.getUserID() == null || request.getUserID() == 0) {
+            int randomId = new java.util.Random().nextInt(900000) + 100000; // 100000~999999
+            request.setUserID(randomId);
+        }
         try {
             SurveyResultResponse result = surveyService.processSurvey(request);
             return ResponseEntity.ok(result);
@@ -65,8 +51,10 @@ public class SurveyController {
     @PostMapping("/surveys/percentage")
     public ResponseEntity<PercentageResponse> getPercentage(@RequestBody PercentageRequest request) {
         try {
-            PercentageResponse percentage = surveyService.getPercentage(request);
-            return ResponseEntity.ok(percentage);
+            int totalPercentage = surveyService.getCategoryPercentage(request.categoryId);
+            int collegePercentage = surveyService.getCategoryPercentageInCollege(request.categoryId, request.college);
+            PercentageResponse response = new PercentageResponse(totalPercentage, collegePercentage);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

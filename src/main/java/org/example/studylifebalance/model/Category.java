@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String categoryID;
     private String name;
     private Integer count;
