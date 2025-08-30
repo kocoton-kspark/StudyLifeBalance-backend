@@ -1,5 +1,8 @@
 package org.example.studylifebalance.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class SurveyService {
     //전공학점 비율 계산
     public double getMajorCreditRatio(int majorCredit, int generalCredit) {

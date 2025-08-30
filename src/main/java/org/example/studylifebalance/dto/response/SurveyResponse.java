@@ -21,11 +21,14 @@ public class SurveyResponse {
     private String description;
 
     @NotNull
-    private Integer major_percentage;
+    public Integer majorCreditRatio;
 
     @NotNull
-    private Integer study_percentage;
+    public Integer generalCreditRatio;
 
     @NotNull
-    private Integer outdoor_activity_percentage;
+    public Integer studyTimeRatio;
+
+    @NotNull
+    public Integer restTimeRatio;
 }
