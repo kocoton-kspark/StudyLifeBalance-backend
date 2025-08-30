@@ -1,6 +1,12 @@
-package main.model;
+package org.example.studylifebalance.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
 public class Category {
     @Id
     private String categoryID;

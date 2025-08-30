@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package main.java.org.example.studylifebalance.service;
 
 public class SurveyService {
@@ -28,4 +29,13 @@ public class SurveyService {
     if (totalTime == 0) return 0.0;
     return Math.round((double) restTime / totalTime * 100);
     }
+=======
+package org.example.studylifebalance.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class SurveyService {
+
+>>>>>>> 909cb5a200acd080553280d4726525005f637a39
 }
