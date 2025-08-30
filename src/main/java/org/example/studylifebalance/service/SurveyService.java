@@ -69,7 +69,7 @@ public class SurveyService {
         // 점수 가져오기
         double mbtiScore = mbtiEnum.getScore() + 1;
         int outsideTimeScore = outsideTime ? 1 : 0;
-        double score = (mbtiScore + outsideTimeScore) / 2;
+        double score = (mbtiScore + outsideTimeScore) / 3;
         int roundedScore = (int) Math.round(score * 100);
         return roundedScore;
     }
