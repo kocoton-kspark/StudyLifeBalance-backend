@@ -1,8 +1,15 @@
-package main.model;
+package org.example.studylifebalance.model;
 
-import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.NoArgsConstructor;
+
+//import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 public class User {
     @Id
     private Integer userID;
