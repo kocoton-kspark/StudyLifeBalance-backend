@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PercentageRequest {
-    public int categoryId;
-    public String college;
+    public String category_code;
+    public String mbti;
 }

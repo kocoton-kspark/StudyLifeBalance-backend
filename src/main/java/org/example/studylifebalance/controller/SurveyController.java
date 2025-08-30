@@ -35,7 +35,7 @@ public class SurveyController {
         try {
             int majorRatio = (int) surveyService.getMajorCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
             int studyRatio = (int) surveyService.getStudyTimeRatio(request.getStudy_time(), request.getRest_time());
-            double outSideRatio = surveyService.getOutsideRatio(request.getOutside_time(), request.getMbti());
+            int outSideRatio = surveyService.getOutsideRatio(request.getOutside_time(), request.getMbti());
 
             // 카테고리 코드와 이름
             Pair<String, String> categoryPair = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
@@ -44,11 +44,11 @@ public class SurveyController {
             String description = "description"; // 필요시 실제 설명으로 변경
             int sleepShortage = 8 - request.getSleep_time();
 
-            // 전체/학교별 백분율 계산 (categoryId가 없으므로 code 사용)
-            int totalPercentage = surveyService.getCategoryPercentage(code);
-            int collegePercentage = surveyService.getCategoryPercentageInCollege(code, request.getCollege());
+//            // 전체/학교별 백분율 계산 (categoryId가 없으므로 code 사용)
+//            int totalPercentage = surveyService.getCategoryPercentage(code);
+//            int collegePercentage = surveyService.getCategoryPercentageInCollege(code, request.getCollege());
 
-            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio, sleepShortage, totalPercentage, collegePercentage);
+            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio, sleepShortage);
             // 만약 SurveyResponse에 totalPercentage, collegePercentage 필드가 있다면 아래처럼 추가
             // response.setTotalPercentage(totalPercentage);
             // response.setCollegePercentage(collegePercentage);

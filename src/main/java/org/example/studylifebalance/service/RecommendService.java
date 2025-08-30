@@ -1,5 +1,6 @@
 package org.example.studylifebalance.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.studylifebalance.dto.request.RecommendRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class RecommendService {
     private final String OPENAI_API_KEY = "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"; // 환경변수로 관리 권장
@@ -47,6 +49,7 @@ public class RecommendService {
             try {
                 ResponseEntity<Map> response = restTemplate.postForEntity(OPENAI_API_URL, entity, Map.class);
                 Object choices = response.getBody().get("choices");
+                System.out.println(choices);
                 if (choices instanceof java.util.List && !((java.util.List) choices).isEmpty()) {
                     Map firstChoice = (Map) ((java.util.List) choices).get(0);
                     Map message = (Map) firstChoice.get("message");
