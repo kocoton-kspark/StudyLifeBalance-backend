@@ -1,5 +1,11 @@
 package org.example.studylifebalance.controller;
 
+import org.example.studylifebalance.dto.request.RecommendRequest;
+import org.example.studylifebalance.dto.request.SurveyRequest;
+import org.example.studylifebalance.dto.response.RatioResponse;
+import org.example.studylifebalance.dto.response.RecommendResponse;
+import org.example.studylifebalance.dto.response.SurveyResponse;
+import org.example.studylifebalance.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,28 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v0")
 public class SurveyController {
-    // 비율 계산 응답 DTO
-    public static class RatioResponse {
-        public int majorCreditRatio;
-        public int generalCreditRatio;
-        public int studyTimeRatio;
-        public int restTimeRatio;
-
-        public RatioResponse(int majorCreditRatio, int generalCreditRatio, int studyTimeRatio, int restTimeRatio) {
-            this.majorCreditRatio = majorCreditRatio;
-            this.generalCreditRatio = generalCreditRatio;
-            this.studyTimeRatio = studyTimeRatio;
-            this.restTimeRatio = restTimeRatio;
-        }
-    }
-
-    // 비율 계산 요청 DTO
-    public static class RatioRequest {
-        public int majorCredit;
-        public int generalCredit;
-        public int studyTime;
-        public int restTime;
-    }
 
     @PostMapping("/surveys/ratios")
     public ResponseEntity<RatioResponse> getRatios(@RequestBody RatioRequest request) {
@@ -52,9 +36,9 @@ public class SurveyController {
 
     // 설문조사 결과
     @PostMapping("/surveys")
-    public ResponseEntity<SurveyResultResponse> submitSurvey(@RequestBody SurveyRequest request) {
+    public ResponseEntity<SurveyResponse> submitSurvey(@RequestBody SurveyRequest request) {
         try {
-            SurveyResultResponse result = surveyService.processSurvey(request);
+            SurveyResponse result = surveyService.processSurvey(request);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -62,21 +46,21 @@ public class SurveyController {
     }
 
     // 전체/학교에서 내 유형 비율
-    @PostMapping("/surveys/percentage")
-    public ResponseEntity<PercentageResponse> getPercentage(@RequestBody PercentageRequest request) {
-        try {
-            PercentageResponse percentage = surveyService.getPercentage(request);
-            return ResponseEntity.ok(percentage);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+//    @PostMapping("/surveys/percentage")
+//    public ResponseEntity<PercentageResponse> getPercentage(@RequestBody PercentageRequest request) {
+//        try {
+//            PercentageResponse percentage = surveyService.getPercentage(request);
+//            return ResponseEntity.ok(percentage);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//    }
 
     // 추천
     @PostMapping("/surveys/recommend")
-    public ResponseEntity<RecommendationResponse> getRecommendation(@RequestBody RecommendationRequest request) {
+    public ResponseEntity<RecommendResponse> getRecommendation(@RequestBody RecommendRequest request) {
         try {
-            RecommendationResponse recommendation = surveyService.getRecommendation(request);
+            RecommendResponse recommendation = surveyService.getRecommendation(request);
             return ResponseEntity.ok(recommendation);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
