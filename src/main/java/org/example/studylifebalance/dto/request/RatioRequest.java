@@ -1,4 +1,4 @@
-package main.java.org.example.studylifebalance.dto.request;
+package org.example.studylifebalance.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class RatioRequest {
 
     @NotNull

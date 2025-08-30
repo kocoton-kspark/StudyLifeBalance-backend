@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class SurveyResponse {
 
@@ -21,11 +20,15 @@ public class SurveyResponse {
     private String description;
 
     @NotNull
-    private Integer majorCreditRatio;
+    private Integer major_ratio;
 
     @NotNull
-    private Integer studyTimeRatio;
+    private Integer study_ratio;
+
+//    @NotNull
+//    private Integer rest_ratio;
 
     @NotNull
-    private Integer outSideTimeRatio;
+    private Integer outdoor_activity_ratio;
+
 }

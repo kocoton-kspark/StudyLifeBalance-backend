@@ -1,5 +1,9 @@
-package main.java.org.example.studylifebalance.dto.response;
+package org.example.studylifebalance.dto.response;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
 public class PercentageResponse {
     public int totalPercentage;
     public int collegePercentage;

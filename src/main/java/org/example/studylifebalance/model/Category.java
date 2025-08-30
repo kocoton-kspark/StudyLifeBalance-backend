@@ -1,6 +1,8 @@
 package org.example.studylifebalance.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,13 +13,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String categoryID;
-    private String name;
+    private String code;
     private Integer count;
     private String description;
 
-    public Category(String categoryID, String name, Integer count, String description) {
+    public Category(String categoryID, String code, Integer count, String description) {
         this.categoryID = categoryID;
-        this.name = name;
+        this.code = code;
         this.count = count;
         this.description = description;
     }
@@ -26,8 +28,8 @@ public class Category {
         return categoryID;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
     public Integer getCount() {
