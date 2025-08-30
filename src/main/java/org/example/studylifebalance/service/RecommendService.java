@@ -42,16 +42,30 @@ public class RecommendService {
         body.put("temperature", 0.7);
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
-        try {
-            ResponseEntity<Map> response = restTemplate.postForEntity(OPENAI_API_URL, entity, Map.class);
-            Object choices = response.getBody().get("choices");
-            if (choices instanceof java.util.List && !((java.util.List) choices).isEmpty()) {
-                Map firstChoice = (Map) ((java.util.List) choices).get(0);
-                Map message = (Map) firstChoice.get("message");
-                return message.get("content").toString();
+        int retryCount = 0;
+        while (retryCount < 3) {
+            try {
+                ResponseEntity<Map> response = restTemplate.postForEntity(OPENAI_API_URL, entity, Map.class);
+                Object choices = response.getBody().get("choices");
+                if (choices instanceof java.util.List && !((java.util.List) choices).isEmpty()) {
+                    Map firstChoice = (Map) ((java.util.List) choices).get(0);
+                    Map message = (Map) firstChoice.get("message");
+                    return message.get("content").toString();
+                }
+                break;
+            } catch (Exception e) {
+                if (e.getMessage() != null && e.getMessage().contains("429")) {
+                    try {
+                        Thread.sleep(2000); // 2초 대기 후 재시도
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        return "GPT API 호출 실패: " + ie.getMessage();
+                    }
+                    retryCount++;
+                } else {
+                    return "GPT API 호출 실패: " + e.getMessage();
+                }
             }
-        } catch (Exception e) {
-            return "GPT API 호출 실패: " + e.getMessage();
         }
         return "GPT 응답 없음";
     }
