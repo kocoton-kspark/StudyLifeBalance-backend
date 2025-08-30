@@ -1,4 +1,8 @@
-package main.java.org.example.studylifebalance.service;
+package org.example.studylifebalance.service;
+
+import java.util.List;
+import java.util.Random;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MentService {
