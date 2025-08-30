@@ -8,6 +8,7 @@ import org.example.studylifebalance.dto.response.RecommendResponse;
 import org.example.studylifebalance.dto.response.SurveyResponse;
 import org.example.studylifebalance.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ public class SurveyController {
     @Autowired
     private SurveyService surveyService;
 
+    // 설문조사 결과
     @PostMapping("/surveys")
     public ResponseEntity<SurveyResponse> getSurveyResult(@RequestBody SurveyRequest request) {
         try {
@@ -28,8 +30,9 @@ public class SurveyController {
             int generalRatio = (int) surveyService.getGeneralCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
             int studyRatio = (int) surveyService.getStudyTimeRatio(request.getStudy_time(), request.getRest_time());
             int restRatio = (int) surveyService.getRestTimeRatio(request.getStudy_time(), request.getRest_time());
-            String category = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
-            SurveyResponse response = new SurveyResponse(category, majorRatio, generalRatio, studyRatio, restRatio);
+            int outSideRatio = 0;
+            Pair<String, String> category = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
+            SurveyResponse response = new SurveyResponse(category.getFirst(), category.getSecond(), "description" ,majorRatio, studyRatio, outSideRatio);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
