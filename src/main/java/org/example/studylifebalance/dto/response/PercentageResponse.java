@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class PercentageResponse {
     public int totalPercentage;
     public int collegePercentage;

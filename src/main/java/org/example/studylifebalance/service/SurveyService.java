@@ -18,7 +18,7 @@ public class SurveyService {
     // 전체 category 비율
     public int getCategoryPercentage(String categoryCode) {
         int categoryCount = userRepository.countByCategoryId(categoryCode);
-        int totalCount = userRepository.count();
+        long totalCount = userRepository.count();
         if (totalCount == 0) return 0;
         return Math.round((float) categoryCount / totalCount * 100);
     }
@@ -43,7 +43,6 @@ public class SurveyService {
         int totalCredit = majorCredit + generalCredit;
         if (totalCredit == 0) return 0.0;
         return Math.round((double) generalCredit / totalCredit*100);
-        return Math.round((double) generalCredit / totalCredit * 100);
     }
 
     //학습시간 비율 계산
