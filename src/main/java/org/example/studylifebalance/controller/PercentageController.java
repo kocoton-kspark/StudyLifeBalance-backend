@@ -2,6 +2,7 @@ package org.example.studylifebalance.controller;
 
 import org.example.studylifebalance.dto.request.PercentageRequest;
 import org.example.studylifebalance.dto.request.SurveyRequest;
+import org.example.studylifebalance.dto.response.PercentageResponse;
 import org.example.studylifebalance.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,13 @@ public class PercentageController {
     SurveyService surveyService;
 
     @PostMapping("/surveys/percentage")
-    public String getPercentMBTI(@RequestBody PercentageRequest request) {
+    public ResponseEntity<PercentageResponse> getPercentMBTI(@RequestBody PercentageRequest request) {
         try {
             int ratio = surveyService.getCategoryPercentageInCollege(request.getCategory_code(), request.getMbti());
-            return String.valueOf(ratio);
+            PercentageResponse response = new PercentageResponse(ratio);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return e.getMessage();
+            return ResponseEntity.badRequest().build();
         }
     }
 }

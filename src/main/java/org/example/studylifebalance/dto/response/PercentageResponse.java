@@ -6,11 +6,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PercentageResponse {
-    public int totalPercentage;
-    public int collegePercentage;
+    public int percentage;
 
-    public PercentageResponse(int totalPercentage, int collegePercentage) {
-        this.totalPercentage = totalPercentage;
-        this.collegePercentage = collegePercentage;
+    public PercentageResponse(int percentage) {
+        this.percentage = percentage;
     }
 }
