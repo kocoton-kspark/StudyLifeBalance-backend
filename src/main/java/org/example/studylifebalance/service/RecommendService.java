@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Service
 public class RecommendService {
-    private final String OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // 환경변수로 관리 권장
+    private final String OPENAI_API_KEY = "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"; // 환경변수로 관리 권장
     private final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
     private final RestTemplate restTemplate = new RestTemplate();
     public String getStudyTip(RecommendRequest request) {
