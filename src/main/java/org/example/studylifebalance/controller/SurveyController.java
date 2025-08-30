@@ -35,6 +35,7 @@ public class SurveyController {
             SurveyResponse response = new SurveyResponse(category.getFirst(), category.getSecond(), "description" ,majorRatio, studyRatio, outSideRatio);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
@@ -62,13 +63,13 @@ public class SurveyController {
 //    }
 
     // 추천
-    @PostMapping("/surveys/recommend")
-    public ResponseEntity<RecommendResponse> getRecommendation(@RequestBody RecommendRequest request) {
-        try {
-            RecommendResponse recommendation = surveyService.getRecommendation(request);
-            return ResponseEntity.ok(recommendation);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
-    }
+//    @PostMapping("/surveys/recommend")
+//    public ResponseEntity<RecommendResponse> getRecommendation(@RequestBody RecommendRequest request) {
+//        try {
+//            RecommendResponse recommendation = surveyService.getRecommendation(request);
+//            return ResponseEntity.ok(recommendation);
+//        } catch (Exception e) {
+//            return ResponseEntity.internalServerError().build();
+//        }
+//    }
 }
