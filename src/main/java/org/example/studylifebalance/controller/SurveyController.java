@@ -41,7 +41,7 @@ public class SurveyController {
             Pair<String, String> categoryPair = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio, request.getStudy_time());
             String code = categoryPair.getFirst();
             String category = categoryPair.getSecond();
-            String description = "description"; // 필요시 실제 설명으로 변경
+            String description = surveyService.getDescription(code); // 필요시 실제 설명으로 변경
             int sleepShortage = 8 - request.getSleep_time();
 
 //            // 전체/학교별 백분율 계산 (categoryId가 없으므로 code 사용)
