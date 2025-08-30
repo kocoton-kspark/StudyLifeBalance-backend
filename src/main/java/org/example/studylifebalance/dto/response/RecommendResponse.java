@@ -11,5 +11,8 @@ import lombok.NoArgsConstructor;
 public class RecommendResponse {
 
     @NotBlank
-    private String recommend;
+    private String study_recommend;
+
+    @NotBlank
+    private String rest_recommend;
 }

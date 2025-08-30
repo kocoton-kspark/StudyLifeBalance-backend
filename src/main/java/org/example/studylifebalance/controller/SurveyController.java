@@ -60,17 +60,13 @@ public class SurveyController {
         }
     }
 
-
-
     @PostMapping("/surveys/recommend-tips")
-    public ResponseEntity<RecommendResponse[]> getRecommendTips(@RequestBody RecommendRequest request) {
+    public ResponseEntity<RecommendResponse> getRecommendTips(@RequestBody RecommendRequest request) {
         try {
             String studyTip = recommendService.getStudyTip(request);
             String restTip = recommendService.getRestTip(request);
-            RecommendResponse[] responses = new RecommendResponse[] {
-                new RecommendResponse(studyTip),
-                new RecommendResponse(restTip)
-            };
+            RecommendResponse responses = new RecommendResponse(studyTip, restTip);
+
             return ResponseEntity.ok(responses);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
