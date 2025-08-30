@@ -13,14 +13,34 @@ public class RecommendRequest {
     private Integer userID;
 
     @NotNull
+    private String college;
+
+    @NotNull
+    private Integer grade;
+
+    @NotNull
+    private Major major;
+
+    @NotNull
     private Integer study_time;
 
     @NotNull
     private Integer work_time;
 
     @NotNull
+    private Integer rest_time;
+
+    @NotNull
     private Integer sleep_time;
 
     @NotNull
+    private Integer major_credit;
+
+    @NotNull
+    private Integer general_grade;
+
+    @NotNull
     private Integer external_activities_time;
+
+    
 }
