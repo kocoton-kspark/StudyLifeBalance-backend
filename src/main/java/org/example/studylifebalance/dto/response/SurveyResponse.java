@@ -15,20 +15,17 @@ public class SurveyResponse {
     private String category;
 
     @NotNull
-    private Integer code;
+    private String code;
 
     @NotBlank
     private String description;
 
     @NotNull
-    public Integer majorCreditRatio;
+    private Integer majorCreditRatio;
 
     @NotNull
-    public Integer generalCreditRatio;
+    private Integer studyTimeRatio;
 
     @NotNull
-    public Integer studyTimeRatio;
-
-    @NotNull
-    public Integer restTimeRatio;
+    private Integer outSideTimeRatio;
 }
