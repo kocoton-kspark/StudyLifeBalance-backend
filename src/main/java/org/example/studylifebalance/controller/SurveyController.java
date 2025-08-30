@@ -27,7 +27,6 @@ public class SurveyController {
 
 
     @PostMapping("/surveys/result")
-
     public ResponseEntity<SurveyResponse> getSurveyResult(@RequestBody SurveyRequest request) {
         try {
             int majorRatio = (int) surveyService.getMajorCreditRatio(request.getMajor_credit(), request.getGeneral_credit());
