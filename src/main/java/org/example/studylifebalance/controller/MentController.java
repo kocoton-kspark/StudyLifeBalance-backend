@@ -1,5 +1,6 @@
 package org.example.studylifebalance.controller;
 
+import org.example.studylifebalance.dto.response.MentResponse;
 import org.example.studylifebalance.service.MentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,11 @@ public class MentController {
     private MentService mentService;
 
     @GetMapping("/quotes")
-    public ResponseEntity<String> getTodayQuote() {
+    public ResponseEntity<MentResponse> getTodayQuote() {
         try {
             String quote = mentService.getRandomMent();
-            return ResponseEntity.ok(quote);
+            MentResponse response = new MentResponse(quote);
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             // 잘못된 요청 데이터
             return ResponseEntity.badRequest().build();
