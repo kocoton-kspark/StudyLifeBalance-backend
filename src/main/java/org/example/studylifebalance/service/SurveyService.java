@@ -1,5 +1,6 @@
-package main.java.org.example.studylifebalance.service;
+package org.example.studylifebalance.service;
 
+import org.example.studylifebalance.MBTI;
 import org.example.studylifebalance.repository.CategoryRepository;
 import org.example.studylifebalance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class SurveyService {
 
 
     //카테고리 계산
-    public Pair<String, String> getCategory(String major, double majorRatio, double studyTimeRatio, double outsideRatio) {
+    public Pair<String, String> getCategory(String major, double majorRatio, double studyTimeRatio, double outsideRatio, int studyTime) {
         String resultCode = "";
 
         // // 계열
@@ -118,7 +119,7 @@ public class SurveyService {
         //     resultCode += "I";
         // }
 
-        // String resultName = "";
+        String resultName = "";
 
         if (studyTime >= 10){
             resultCode = "NMSI";

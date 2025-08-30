@@ -16,9 +16,9 @@ public class Category {
     private Integer count;
     private String description;
 
-
-    public Category(String code, Integer count, String description) {
+    public Category(String code, String category, Integer count, String description) {
         this.code = code;
+        this.categoryId = category;
         this.count = count;
         this.description = description;
     }

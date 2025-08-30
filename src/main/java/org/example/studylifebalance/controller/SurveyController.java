@@ -9,8 +9,8 @@ import org.example.studylifebalance.dto.response.RatioResponse;
 import org.example.studylifebalance.dto.response.RecommendResponse;
 import org.example.studylifebalance.dto.response.SurveyResponse;
 import org.example.studylifebalance.dto.response.PercentageResponse;
-import org.example.studylifebalance.service.SurveyService;
 import org.example.studylifebalance.service.RecommendService;
+import org.example.studylifebalance.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class SurveyController {
             int outSideRatio = surveyService.getOutsideRatio(request.getOutside_time(), request.getMbti());
 
             // 카테고리 코드와 이름
-            Pair<String, String> categoryPair = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio);
+            Pair<String, String> categoryPair = surveyService.getCategory(request.getMajor(), majorRatio, studyRatio, outSideRatio, request.getStudy_time());
             String code = categoryPair.getFirst();
             String category = categoryPair.getSecond();
             String description = "description"; // 필요시 실제 설명으로 변경
