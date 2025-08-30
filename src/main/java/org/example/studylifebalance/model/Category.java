@@ -1,9 +1,6 @@
 package org.example.studylifebalance.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,21 +8,23 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String categoryID;
+    @Column(name = "category_id")
+    // DB에 맞춰 명시
+    private String categoryId;
     private String code;
     private Integer count;
     private String description;
 
-    public Category(String categoryID, String code, Integer count, String description) {
-        this.categoryID = categoryID;
+
+    public Category(String code, Integer count, String description) {
         this.code = code;
         this.count = count;
         this.description = description;
     }
 
-    public String getCategoryID() {
-        return categoryID;
+
+    public String getCategoryId() {
+        return categoryId;
     }
 
     public String getCode() {

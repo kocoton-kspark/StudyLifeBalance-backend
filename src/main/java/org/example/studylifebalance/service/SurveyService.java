@@ -17,7 +17,7 @@ public class SurveyService {
 
     // 전체 category 비율
     public int getCategoryPercentage(String categoryCode) {
-        int categoryCount = userRepository.countByCategoryId(categoryCode);
+        int categoryCount = userRepository.countByCategory_CategoryId(categoryCode);
         long totalCount = userRepository.count();
         if (totalCount == 0) return 0;
         return Math.round((float) categoryCount / totalCount * 100);
@@ -25,7 +25,7 @@ public class SurveyService {
 
     // 학교 내 category 비율
     public int getCategoryPercentageInCollege(String categoryCode, String college) {
-        int categoryCount = userRepository.countByCategoryIdAndCollege(categoryCode, college);
+        int categoryCount = userRepository.countByCategory_CategoryIdAndCollege(categoryCode, college);
         int totalCount = userRepository.countByCollege(college);
         if (totalCount == 0) return 0;
         return Math.round((float) categoryCount / totalCount * 100);

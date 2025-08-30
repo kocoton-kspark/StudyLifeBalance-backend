@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, String> {
     @Modifying
-    @Query("UPDATE Category c SET c.count = c.count + 1 WHERE c.categoryID = :categoryID")
-    int incrementCountByCategoryID(String categoryID);
+    @Query("UPDATE Category c SET c.count = c.count + 1 WHERE c.categoryId = :categoryID")
+    int incrementCountByCategoryId(String categoryID);
 
-    Category findByCategoryID(String categoryID);
+    Category findByCategoryId(String categoryID);
 }

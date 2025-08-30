@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
     @Id
-    private Integer userID;
+    private Integer userId;
 
     @ManyToOne
-    @JoinColumn(name = "categoryID", referencedColumnName = "categoryID")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     private String college;
@@ -33,10 +33,10 @@ public class User {
     private Integer generalCredit;
     private Integer externalActivitiesTime;
 
-    public User(Integer userID, Category category, String college, Integer grade, Major major,
+    public User(Integer userId, Category category, String college, Integer grade, Major major,
                 Integer studyTime, Integer workTime, Integer restTime, Integer sleepTime,
                 Integer majorCredit, Integer generalCredit, Integer externalActivitiesTime) {
-        this.userID = userID;
+        this.userId = userId;
         this.category = category;
         this.college = college;
         this.grade = grade;
@@ -50,7 +50,7 @@ public class User {
         this.externalActivitiesTime = externalActivitiesTime;
     }
 
-    public Integer getUserID() { return userID; }
+    public Integer getUserId() { return userId; }
     public Category getCategory() { return category; }
     public String getCollege() { return college; }
     public Integer getGrade() { return grade; }

@@ -43,7 +43,7 @@ public class SurveyController {
             int totalPercentage = surveyService.getCategoryPercentage(code);
             int collegePercentage = surveyService.getCategoryPercentageInCollege(code, request.getCollege());
 
-            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio);
+            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio, totalPercentage, collegePercentage);
             // 만약 SurveyResponse에 totalPercentage, collegePercentage 필드가 있다면 아래처럼 추가
             // response.setTotalPercentage(totalPercentage);
             // response.setCollegePercentage(collegePercentage);
@@ -56,14 +56,14 @@ public class SurveyController {
     }
 
 
-    @PostMapping("/surveys/recommend")
-    public ResponseEntity<RecommendResponse> getRecommendation(@RequestBody RecommendRequest request) {
-        try {
-            RecommendResponse recommendation = surveyService.getRecommendation(request);
-            return ResponseEntity.ok(recommendation);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
-    }
+//    @PostMapping("/surveys/recommend")
+//    public ResponseEntity<RecommendResponse> getRecommendation(@RequestBody RecommendRequest request) {
+//        try {
+//            RecommendResponse recommendation = surveyService.getRecommendation(request);
+//            return ResponseEntity.ok(recommendation);
+//        } catch (Exception e) {
+//            return ResponseEntity.internalServerError().build();
+//        }
+//    }
 
 }

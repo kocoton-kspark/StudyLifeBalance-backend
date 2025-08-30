@@ -32,4 +32,8 @@ public class SurveyResponse {
     @NotNull
     private Integer outdoor_activity_ratio;
 
+    private Integer totalPercentage;
+
+    private Integer collegePercentage;
+
 }

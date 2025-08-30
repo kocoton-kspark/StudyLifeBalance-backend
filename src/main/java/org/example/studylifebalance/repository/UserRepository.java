@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-    int countByCategoryId(String categoryID);
-    int countByCategoryIdAndCollege(String categoryID, String college);
+    int countByCategory_CategoryId(String categoryId);
+    int countByCategory_CategoryIdAndCollege(String categoryId, String college);
     int countByCollege(String college);
 //    int count();
 }

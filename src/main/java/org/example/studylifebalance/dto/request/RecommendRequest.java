@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.studylifebalance.model.User;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class RecommendRequest {
     private Integer grade;
 
     @NotNull
-    private Major major;
+    private User.Major major;
 
     @NotNull
     private Integer study_time;
