@@ -20,13 +20,14 @@ public class User {
     private Major major;
     private Integer studyTime;
     private Integer workTime;
+    private Integer restTime;
     private Integer sleepTime;
     private Integer majorCredit;
     private Integer generalCredit;
     private Integer externalActivitiesTime;
 
     public User(Integer userID, Category category, String college, Integer grade, Major major,
-                Integer studyTime, Integer workTime, Integer sleepTime,
+                Integer studyTime, Integer workTime, Integer restTime, Integer sleepTime,
                 Integer majorCredit, Integer generalCredit, Integer externalActivitiesTime) {
         this.userID = userID;
         this.category = category;
@@ -35,6 +36,7 @@ public class User {
         this.major = major;
         this.studyTime = studyTime;
         this.workTime = workTime;
+        this.restTime = restTime;   
         this.sleepTime = sleepTime;
         this.majorCredit = majorCredit;
         this.generalCredit = generalCredit;
@@ -48,6 +50,7 @@ public class User {
     public Major getMajor() { return major; }
     public Integer getStudyTime() { return studyTime; }
     public Integer getWorkTime() { return workTime; }
+    public Integer getRestTime() { return restTime; }
     public Integer getSleepTime() { return sleepTime; }
     public Integer getMajorCredit() { return majorCredit; }
     public Integer getGeneralCredit() { return generalCredit; }

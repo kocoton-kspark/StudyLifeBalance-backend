@@ -10,6 +10,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v0")
 public class SurveyController {
+    // 비율 계산 응답 DTO
+    public static class RatioResponse {
+        public int majorCreditRatio;
+        public int generalCreditRatio;
+        public int studyTimeRatio;
+        public int restTimeRatio;
+
+        public RatioResponse(int majorCreditRatio, int generalCreditRatio, int studyTimeRatio, int restTimeRatio) {
+            this.majorCreditRatio = majorCreditRatio;
+            this.generalCreditRatio = generalCreditRatio;
+            this.studyTimeRatio = studyTimeRatio;
+            this.restTimeRatio = restTimeRatio;
+        }
+    }
+
+    // 비율 계산 요청 DTO
+    public static class RatioRequest {
+        public int majorCredit;
+        public int generalCredit;
+        public int studyTime;
+        public int restTime;
+    }
+
+    @PostMapping("/surveys/ratios")
+    public ResponseEntity<RatioResponse> getRatios(@RequestBody RatioRequest request) {
+        try {
+            int majorRatio = (int) surveyService.getMajorCreditRatio(request.majorCredit, request.generalCredit);
+            int generalRatio = (int) surveyService.getGeneralCreditRatio(request.majorCredit, request.generalCredit);
+            int studyRatio = (int) surveyService.getStudyTimeRatio(request.studyTime, request.restTime);
+            int restRatio = (int) surveyService.getRestTimeRatio(request.studyTime, request.restTime);
+            RatioResponse response = new RatioResponse(majorRatio, generalRatio, studyRatio, restRatio);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
     @Autowired
     private SurveyService surveyService;
