@@ -67,10 +67,11 @@ public class SurveyService {
         MBTI mbtiEnum = MBTI.valueOf(mbti.toUpperCase());
 
         // 점수 가져오기
-        double mbtiScore = mbtiEnum.getScore() + 1;
+        double mbtiScore = mbtiEnum.getScore();
         int outsideTimeScore = outsideTime ? 1 : 0;
-        double score = (mbtiScore + outsideTimeScore) / 2;
+        double score = (mbtiScore + outsideTimeScore) / 3;
         int roundedScore = (int) Math.round(score * 100);
+        if (roundedScore == 0) return 0;
         return roundedScore;
     }
 
