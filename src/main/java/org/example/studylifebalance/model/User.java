@@ -22,7 +22,7 @@ public class User {
     private Integer grade;
 
     public enum Major {
-        인문대학, 사회과학대학, 법과대학, 자연과학대학, 공과대학, 예술대학, 음악대학, 체육대학
+        인문사회계열, 자연계열, 공학계열, 예술계열, 체육계열
     }
     private Major major;
     private Integer studyTime;

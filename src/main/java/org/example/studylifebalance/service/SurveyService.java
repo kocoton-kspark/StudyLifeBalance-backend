@@ -79,19 +79,19 @@ public class SurveyService {
 
         // 계열
         switch (major) {
-            case "인문 사회":
+            case "인문사회계열":
                 resultCode += "H";
                 break;
-            case "자연":
+            case "자연계열":
                 resultCode += "N";
                 break;
-            case "공학":
+            case "공학계열":
                 resultCode += "E";
                 break;
-            case "예술":
+            case "예술계열":
                 resultCode += "A";
                 break;
-            case "체육":
+            case "체육계열":
                 resultCode += "P";
                 break;
         }
