@@ -42,12 +42,13 @@ public class SurveyController {
             String code = categoryPair.getFirst();
             String category = categoryPair.getSecond();
             String description = "description"; // 필요시 실제 설명으로 변경
+            int sleepShortage = 8 - request.getSleep_time();
 
             // 전체/학교별 백분율 계산 (categoryId가 없으므로 code 사용)
             int totalPercentage = surveyService.getCategoryPercentage(code);
             int collegePercentage = surveyService.getCategoryPercentageInCollege(code, request.getCollege());
 
-            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio, totalPercentage, collegePercentage);
+            SurveyResponse response = new SurveyResponse(category, code, description, majorRatio, studyRatio, outSideRatio, sleepShortage, totalPercentage, collegePercentage);
             // 만약 SurveyResponse에 totalPercentage, collegePercentage 필드가 있다면 아래처럼 추가
             // response.setTotalPercentage(totalPercentage);
             // response.setCollegePercentage(collegePercentage);
