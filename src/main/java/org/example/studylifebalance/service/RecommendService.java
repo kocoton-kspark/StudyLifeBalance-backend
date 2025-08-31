@@ -22,13 +22,13 @@ public class RecommendService {
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
     public String getStudyTip(RecommendRequest request) {
-        String prompt = "다음 정보를 참고해서 공부를 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 존댓말로 말해줘. 정보: "
+        String prompt = "다음 정보를 참고해서 공부를 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 필요없는 말 없이 핵심 내용만 말해줘. 존댓말로 말해줘. 정보: "
                 + request.toString();
         return callGemini(prompt);
     }
 
     public String getRestTip(RecommendRequest request) {
-        String prompt = "다음 정보를 참고해서 휴식을 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 존댓말로 말해줘. 정보: "
+        String prompt = "다음 정보를 참고해서 휴식을 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 필요없는 말 없이 핵심 내용만 말해줘. 존댓말로 말해줘. 정보: "
                 + request.toString();
         return callGemini(prompt);
     }

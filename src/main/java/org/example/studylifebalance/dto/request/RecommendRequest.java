@@ -12,9 +12,6 @@ import org.example.studylifebalance.model.User;
 public class RecommendRequest {
 
     @NotNull
-    private Integer userID;
-
-    @NotNull
     private String college;
 
     @NotNull
