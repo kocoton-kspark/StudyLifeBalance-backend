@@ -10,10 +10,6 @@ import org.example.studylifebalance.model.User;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecommendRequest {
-
-    @NotNull
-    private Integer userID;
-
     @NotNull
     private String college;
 
