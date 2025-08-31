@@ -17,18 +17,18 @@ import java.util.Map;
 public class RecommendService {
     private final RestTemplate restTemplate = new RestTemplate();
 
-    private static final String GEMINI_API_KEY = "AIzaSyDfXZcmzVTICyCbbHQayaD5pA4LsQBNEfY";
+    private static final String GEMINI_API_KEY = "";
     private static final String GEMINI_API_URL =
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
     public String getStudyTip(RecommendRequest request) {
-        String prompt = "다음 정보를 참고해서 공부를 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 존댓말로 말해줘. 사용자의 이름은 말하지 말아줘. 필요없는 감탄사는 하지 말아줘. 필요없는 말 하지 말고 핵심내용만 말해줘. 학습 시간과 공부 방법도 알려주면 좋겠어. 정보: "
+        String prompt = "다음 정보를 참고해서 공부를 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 존댓말로 말해줘. 정보: "
                 + request.toString();
         return callGemini(prompt);
     }
 
     public String getRestTip(RecommendRequest request) {
-        String prompt = "다음 정보를 참고해서 휴식을 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 존댓말로 말해줘. 사용자의 이름은 말하지 말아줘. 필요없는 감탄사는 하지 말아줘. 필요없는 말 하지 말고 핵심내용만 말해줘. 휴식 시간과 휴식 방법도 알려주면 좋겠어. 정보: "
+        String prompt = "다음 정보를 참고해서 휴식을 더 잘하는 법을 100자 내외로 ~다 말투로 알려줘. 존댓말로 말해줘. 정보: "
                 + request.toString();
         return callGemini(prompt);
     }
